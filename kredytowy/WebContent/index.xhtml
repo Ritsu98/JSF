@@ -3,30 +3,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+
+>
 
 <h:head>
 	<title>Kredyt</title>
 </h:head>
 <h:body>
-
-	<h1>Kalkulator kredytowy</h1>
-
+<p:panel header="Kalkulator kredytowy">
+	
+ 
 	<h:form id="bla">
-  		Kwota<h:inputText id="kwota" value="#{kredytBB.kwota}"/>
-		<br />
-  		
-  		Mies:<h:inputText id="miesiace" value="#{kredytBB.miesiace}"/> 
-		<br />
-		Oprocentowanie<h:inputText id="oprocentowanie" value="#{kredytBB.oprocentowanie}"/>
-		<h:messages id="msg" />
-	
-		<h:commandButton value="Oblicz" action="#{kredytBB.calc()}"/>
-		<br />
+		<h:panelGrid id="grid" columns="2" cellpadding="5">
 		
-	
-		<h:commandLink value="Informacje" action="#{kredytBB.info()}" />
+	  		<p:outputLabel for="" value="Kwota:" />
+	  		<p:inputText id="kwota" value="#{kredytBB.kwota}"/>
+			
+	  		<p:outputLabel for="" value="Liczba miesięcy" />
+	  		<p:inputText id="miesiace" value="#{kredytBB.miesiace}" /> 
+			
+			<p:outputLabel for="" value="Oprocentowanie:" />
+			<p:inputText id="oprocentowanie" value="#{kredytBB.oprocentowanie}"/>
+			
+		
+			<p:commandButton value="Oblicz" action="#{kredytBB.calc()}" update="msg"/>
+			
+			
+		
+			<h:commandLink value="Informacje" action="#{kredytBB.info()}" />
+			 </h:panelGrid>
+		<p:messages id="msg" />
+		 
 	</h:form>
-
+</p:panel>
 </h:body>
 </html>

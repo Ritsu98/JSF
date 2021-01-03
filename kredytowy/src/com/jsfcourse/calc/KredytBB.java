@@ -69,5 +69,5 @@ public class KredytBB {
 		}
 		return null;
 	}
-
+	
 }
