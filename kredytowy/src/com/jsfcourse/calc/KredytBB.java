@@ -11,43 +11,43 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class KredytBB {
-	private String Kwota;
-	private String Miesiace;
-	private String Oprocentowanie;
+	private double Kwota;
+	private int Miesiace;
+	private double Oprocentowanie;
 	private Double result;
 
 	@Inject
 	FacesContext ctx;
 
-	public String getKwota() {
+	public double getKwota() {
 		return Kwota;
 	}
 
-	public void setKwota(String kwota) {
+	public void setKwota(double kwota) {
 		Kwota = kwota;
 	}
 
-	public String getMiesiace() {
+	public int getMiesiace() {
 		return Miesiace;
 	}
 
-	public void setMiesiace(String miesiace) {
+	public void setMiesiace(int miesiace) {
 		Miesiace = miesiace;
 	}
 
-	public String getOprocentowanie() {
+	public double getOprocentowanie() {
 		return Oprocentowanie;
 	}
 
-	public void setOprocentowanie(String oprocentowanie) {
+	public void setOprocentowanie(double oprocentowanie) {
 		Oprocentowanie = oprocentowanie;
 	}
 
 	public boolean doTheMath() {
 		try {
-			double Kwota = Double.parseDouble(this.Kwota);
-			double Miesiace = Double.parseDouble(this.Miesiace);
-			double Oprocentowanie = Double.parseDouble(this.Oprocentowanie)/100;
+			double Kwota = this.Kwota;
+			double Miesiace = this.Miesiace;
+			double Oprocentowanie = this.Oprocentowanie/100;
 			double q = (1+(Oprocentowanie/12));
 			double Rata = Kwota*(Math.pow(q, Miesiace)) * ((q-1)/(Math.pow(q,Miesiace)-1));
 			double Wynik = Rata*Miesiace;
@@ -64,7 +64,7 @@ public class KredytBB {
 
 	public String calc() {
 		if (doTheMath()) {
-			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Ca³kowity koszt kredytu " + result, null));
+			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Calkowity koszt kredytu " + result, null));
 			
 		}
 		return null;

@@ -14,27 +14,34 @@
 <h:body>
 <p:panel header="Kalkulator kredytowy">
 	
- 
+
 	<h:form id="bla">
-		<h:panelGrid id="grid" columns="2" cellpadding="5">
+	<p:messages id="msg" />
+	
+		<h:panelGrid id="grid" columns="3" cellpadding="5">
 		
-	  		<p:outputLabel for="" value="Kwota:" />
-	  		<p:inputText id="kwota" value="#{kredytBB.kwota}"/>
+	  		<p:outputLabel for="kwota" value="Kwota:" />
+	  		<p:inputText id="kwota" value="#{kredytBB.kwota}" required="true" requiredMessage="Pole wymagane"  converterMessage="To nie jest liczba"/>
+			<p:message for="kwota" />
 			
 	  		<p:outputLabel for="" value="Liczba miesięcy" />
-	  		<p:inputText id="miesiace" value="#{kredytBB.miesiace}" /> 
+	  		<p:inputText id="miesiace" value="#{kredytBB.miesiace}" required="true"	requiredMessage="Musisz podać ilośc miesięcy" validatorMessage="Minimum 3 miesiące" converterMessage="To nie jest liczba">
+			<f:validateLongRange minimum="3"/>
+			</p:inputText> 
+			<p:message for="miesiace" />
 			
 			<p:outputLabel for="" value="Oprocentowanie:" />
-			<p:inputText id="oprocentowanie" value="#{kredytBB.oprocentowanie}"/>
-			
-		
+			<p:inputText id="oprocentowanie" value="#{kredytBB.oprocentowanie}" required="true" requiredMessage="Nie może być puste" validatorMessage="Minimum 3%"  converterMessage="To nie jest liczba">
+			<f:validateLongRange minimum="3"/>
+			</p:inputText> 
+			<p:message for="oprocentowanie" />
 			<p:commandButton value="Oblicz" action="#{kredytBB.calc()}" update="msg"/>
 			
 			
 		
 			<h:commandLink value="Informacje" action="#{kredytBB.info()}" />
-			 </h:panelGrid>
-		<p:messages id="msg" />
+		</h:panelGrid>
+		
 		 
 	</h:form>
 </p:panel>
