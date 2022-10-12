@@ -11,48 +11,48 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class KredytBB {
-	private double Kwota;
-	private int Miesiace;
-	private double Oprocentowanie;
+	private double kwota;
+	private int miesiace;
+	private double oprocentowanie;
 	private Double result;
 
 	@Inject
 	FacesContext ctx;
 
 	public double getKwota() {
-		return Kwota;
+		return kwota;
 	}
 
-	public void setKwota(double kwota) {
-		Kwota = kwota;
+	public void setKwota(double Kwota) {
+		kwota = Kwota;
 	}
 
 	public int getMiesiace() {
-		return Miesiace;
+		return miesiace;
 	}
 
-	public void setMiesiace(int miesiace) {
-		Miesiace = miesiace;
+	public void setMiesiace(int Miesiace) {
+		miesiace = Miesiace;
 	}
 
 	public double getOprocentowanie() {
-		return Oprocentowanie;
+		return oprocentowanie;
 	}
 
-	public void setOprocentowanie(double oprocentowanie) {
-		Oprocentowanie = oprocentowanie;
+	public void setOprocentowanie(double Oprocentowanie) {
+		oprocentowanie = Oprocentowanie;
 	}
 
 	public boolean doTheMath() {
 		try {
-			double Kwota = this.Kwota;
-			double Miesiace = this.Miesiace;
-			double Oprocentowanie = this.Oprocentowanie/100;
-			double q = (1+(Oprocentowanie/12));
-			double Rata = Kwota*(Math.pow(q, Miesiace)) * ((q-1)/(Math.pow(q,Miesiace)-1));
-			double Wynik = Rata*Miesiace;
+			double kwota = this.kwota;
+			double miesiace = this.miesiace;
+			double oprocentowanie = this.oprocentowanie/100;
+			double q = (1+(oprocentowanie/12));
+			double rata = kwota*(Math.pow(q, miesiace)) * ((q-1)/(Math.pow(q,miesiace)-1));
+			double kosztKredytu = rata*miesiace;
 			
-			result = Wynik;
+			result = kosztKredytu;
 			return true;
 
 		} catch (Exception e) {
